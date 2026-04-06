@@ -1,14 +1,20 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
+  <title>로또 번호 추첨기</title>
   <link href='/style.css' rel='stylesheet'>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
+  <div class="container">
+    <button id="theme-toggle" aria-label="테마 전환">🌙</button>
+    <h1>로또 번호 추첨기</h1>
+    <div id="ball-container">
+      <div class="placeholder">추첨 버튼을 눌러주세요!</div>
+    </div>
+    <button id="generate-btn">번호 추첨하기</button>
+  </div>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
 </html>
