@@ -5,25 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>로또 번호 추첨기 & 당첨 정보</title>
   <link href='/style.css' rel='stylesheet'>
-  <!-- Leaflet CSS for Map -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
-  <!-- This Week's Winning Numbers -->
+  <button id="theme-toggle">다크 모드</button>
+
   <div class="container latest-results">
-    <button id="theme-toggle" aria-label="테마 전환">🌙</button>
     <h2>이번 주 당첨 번호</h2>
     <div id="latest-draw-info" class="draw-info">정보를 불러오는 중...</div>
-    <div id="latest-ball-container" class="ball-row">
-      <!-- Latest balls will be rendered here -->
-    </div>
+    <div id="latest-ball-container" class="ball-row"></div>
   </div>
 
-  <!-- Lotto Number Generator -->
   <div class="container">
     <h1>로또 번호 추첨기</h1>
     <div class="generator-options">
-      <label for="set-count">추첨 세트 수:</label>
+      <label for="set-count">추첨 세트:</label>
       <select id="set-count">
         <option value="1">1세트</option>
         <option value="2">2세트</option>
@@ -31,21 +27,27 @@
         <option value="4">4세트</option>
         <option value="5">5세트</option>
       </select>
+      <label style="cursor: pointer;">
+        <input type="checkbox" id="bonus-checkbox" checked> 보너스 번호 포함
+      </label>
     </div>
     <div id="ball-container" class="sets-container">
-      <div class="placeholder">추첨 버튼을 눌러주세요! (6개 번호 + 보너스 1개)</div>
+      <div class="placeholder">번호를 생성해주세요.</div>
     </div>
     <button id="generate-btn">번호 추첨하기</button>
   </div>
 
-  <!-- Speetto Winning Stores Map -->
   <div class="container" id="map-container">
     <h2>스피또 당첨 판매점</h2>
-    <div class="map-info">최근 1등/2등 당첨점이 배출된 매장 위치입니다.</div>
+    <div id="map-filters">
+      <button class="filter-btn active" data-type="all">전체</button>
+      <button class="filter-btn" data-type="500">500</button>
+      <button class="filter-btn" data-type="1000">1000</button>
+      <button class="filter-btn" data-type="2000">2000</button>
+    </div>
     <div id="map"></div>
   </div>
 
-  <!-- Affiliate Form -->
   <div class="container affiliate-container">
     <h2>제휴 문의</h2>
     <form action="https://formspree.io/f/mjgplzoa" method="POST">
@@ -58,10 +60,6 @@
         <input type="email" id="email" name="_replyto" required placeholder="example@email.com">
       </div>
       <div class="form-group">
-        <label for="company">회사/단체명</label>
-        <input type="text" id="company" name="company" placeholder="회사 또는 단체명을 입력해주세요">
-      </div>
-      <div class="form-group">
         <label for="message">문의 내용</label>
         <textarea id="message" name="message" required placeholder="문의하실 내용을 상세히 적어주세요"></textarea>
       </div>
@@ -69,7 +67,6 @@
     </form>
   </div>
 
-  <!-- Leaflet JS for Map -->
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
