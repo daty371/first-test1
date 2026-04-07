@@ -28,25 +28,27 @@ document.addEventListener('DOMContentLoaded', () => {
     updateThemeUI(body.classList.contains('dark-mode'));
   });
 
-  // --- Today's Fortune Logic ---
+  // --- Today's Fortune Logic (Lottery Specific) ---
   const fortunes = [
-    "오늘 당신에게 예상치 못한 행운이 찾아옵니다! 🍀",
-    "작은 노력이 큰 결실을 맺는 하루입니다. 꾸준히 정진하세요.",
-    "주변 사람들과의 협력이 큰 힘이 될 것입니다. 포용력을 발휘하세요.",
-    "오늘은 새로운 시작을 하기에 아주 좋은 날입니다.",
-    "당신의 고집을 조금 내려놓으면 더 넓은 세상이 보입니다.",
-    "기회는 준비된 자에게 옵니다. 오늘이 바로 그날일 수도 있습니다.",
-    "밝은 미소가 당신의 운을 더욱 높여줍니다. 활기차게 웃어보세요!",
-    "어려운 일이 생겨도 침착함을 유지하면 슬기롭게 해결됩니다.",
-    "오늘은 재물운이 상승하는 날입니다. 소소한 기쁨을 누려보세요.",
-    "가까운 곳으로의 산책이 당신에게 새로운 영감을 줄 것입니다."
+    { text: "금전운 대폭발! 💰 오늘은 복권을 사도 좋은 날입니다. 104회차를 노려보세요!", type: "lucky" },
+    { text: "직관을 믿으세요. 당신이 고른 그 번호가 1등 번호가 될지도 모릅니다! ✨", type: "lucky" },
+    { text: "행운의 여신이 미소 짓고 있습니다. 스피또 1000에서 예상치 못한 기쁨이? 🎁", type: "lucky" },
+    { text: "작은 당첨이 큰 행운으로 이어질 징조입니다. 오늘 하루는 기대하셔도 좋습니다!", type: "lucky" },
+    { text: "주변의 명당을 찾아보세요. 발길 닿는 곳마다 당첨의 기운이 가득합니다. 📍", type: "lucky" },
+    { text: "오늘은 운이 좀 부족하네요. 😅 복권보다는 맛있는 저녁 한 끼로 힐링하세요.", type: "unlucky" },
+    { text: "재물운이 구름에 가려져 있습니다. 오늘은 소액으로 즐기거나 다음을 기약하세요.", type: "unlucky" },
+    { text: "욕심이 화를 부를 수 있습니다. 무리한 구매보다는 가벼운 마음이 중요합니다.", type: "unlucky" },
+    { text: "오늘은 번호가 자꾸 빗나가네요. 잠시 쉬어가는 것도 전략입니다! 🛌", type: "unlucky" },
+    { text: "주변에 운을 나눠주는 날입니다. 본인의 당첨운은 조금 뒤로 미뤄졌네요. 🕯️", type: "unlucky" }
   ];
 
   fortuneBtn.addEventListener('click', () => {
     const randomIndex = Math.floor(Math.random() * fortunes.length);
-    fortuneDisplay.textContent = fortunes[randomIndex];
+    const fortune = fortunes[randomIndex];
+    fortuneDisplay.textContent = fortune.text;
+    fortuneDisplay.style.color = fortune.type === 'lucky' ? 'var(--primary-color)' : 'var(--placeholder-color)';
     fortuneDisplay.style.animation = 'none';
-    fortuneDisplay.offsetHeight; // trigger reflow
+    fortuneDisplay.offsetHeight; 
     fortuneDisplay.style.animation = 'pop-in 0.5s ease-out';
   });
 

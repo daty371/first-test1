@@ -18,9 +18,9 @@
 
   <!-- Today's Fortune -->
   <div class="container fortune-container">
-    <h2>오늘의 운세</h2>
-    <div id="fortune-display" class="fortune-text">운세를 확인하려면 아래 버튼을 눌러주세요.</div>
-    <button id="fortune-btn" class="filter-btn active" style="margin-top: 1rem;">운세 보기</button>
+    <h2>오늘의 복권 운세</h2>
+    <div id="fortune-display" class="fortune-text">당신의 운세를 확인하려면 버튼을 눌러주세요.</div>
+    <button id="fortune-btn" class="filter-btn active" style="margin-top: 1rem;">운세 뽑기</button>
   </div>
 
   <div class="container">
@@ -46,20 +46,40 @@
 
   <!-- Speetto Info & Map -->
   <div class="container" id="map-container">
-    <h2>스피또 정보</h2>
+    <h2>스피또 잔여 수량 정보</h2>
     
     <div class="speetto-stats">
       <div class="stat-item">
-        <span class="stat-label">스피또 2000 (66회)</span>
-        <div class="stat-bar"><div class="stat-fill" style="width: 74%;">74%</div></div>
+        <div class="stat-header">
+          <span class="stat-label">스피또 2000 (66회) - 출고율 74%</span>
+          <span class="stat-advice" style="color: var(--placeholder-color);">1등 소진. 2등을 노려보세요!</span>
+        </div>
+        <div class="stat-bar"><div class="stat-fill" style="width: 74%;"></div></div>
+        <div class="stat-details">
+          <span>1등: 0장 / 2등: 5장 / 3등: 125,402장</span>
+        </div>
       </div>
+
       <div class="stat-item">
-        <span class="stat-label">스피또 1000 (104회)</span>
-        <div class="stat-bar"><div class="stat-fill" style="width: 95%;">95%</div></div>
+        <div class="stat-header">
+          <span class="stat-label">스피또 1000 (104회) - 출고율 95%</span>
+          <span class="stat-advice" style="color: var(--ball-red); font-weight: bold;">(1등이 4장 남아있어 확률이 매우 높은 상태입니다!)</span>
+        </div>
+        <div class="stat-bar"><div class="stat-fill" style="width: 95%;"></div></div>
+        <div class="stat-details">
+          <span>1등: 4장 / 2등: 12장 / 3등: 45,910장</span>
+        </div>
       </div>
+
       <div class="stat-item">
-        <span class="stat-label">스피또 500 (48회)</span>
-        <div class="stat-bar"><div class="stat-fill" style="width: 22%;">22%</div></div>
+        <div class="stat-header">
+          <span class="stat-label">스피또 500 (48회) - 출고율 22%</span>
+          <span class="stat-advice">판매 초기. 전국에 1등이 숨어있습니다!</span>
+        </div>
+        <div class="stat-bar"><div class="stat-fill" style="width: 22%;"></div></div>
+        <div class="stat-details">
+          <span>1등: 5장 / 2등: 100장 / 3등: 580,210장</span>
+        </div>
       </div>
     </div>
 
