@@ -63,7 +63,7 @@ body {
 /* Visitor Counter */
 #visitor-counter {
   position: fixed;
-  top: 10px;
+  top: 60px;
   right: 140px; /* Adjusted to be next to theme toggle */
   background-color: var(--container-bg);
   padding: 8px 15px;
@@ -98,7 +98,7 @@ body {
 
 #theme-toggle {
   position: fixed;
-  top: 10px;
+  top: 60px;
   right: 20px;
   background-color: var(--container-bg);
   border: 1px solid rgba(0,0,0,0.05);
@@ -117,6 +117,25 @@ body {
   transform: scale(1.05);
   background-color: var(--primary-color);
   color: white;
+}
+
+/* Ad Container */
+.ads-container {
+  max-width: 700px;
+  width: 90%;
+  margin: 1rem 0;
+  background: var(--container-bg);
+  border-radius: 16px;
+  padding: 10px;
+  text-align: center;
+  border: 1px dashed var(--placeholder-color);
+  color: var(--placeholder-color);
+  font-size: 0.8rem;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--card-shadow);
 }
 
 .container {
