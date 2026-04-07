@@ -16,6 +16,13 @@
     <div id="latest-ball-container" class="ball-row"></div>
   </div>
 
+  <!-- Today's Fortune -->
+  <div class="container fortune-container">
+    <h2>오늘의 운세</h2>
+    <div id="fortune-display" class="fortune-text">운세를 확인하려면 아래 버튼을 눌러주세요.</div>
+    <button id="fortune-btn" class="filter-btn active" style="margin-top: 1rem;">운세 보기</button>
+  </div>
+
   <div class="container">
     <h1>로또 번호 추첨기</h1>
     <div class="generator-options">
@@ -37,8 +44,26 @@
     <button id="generate-btn">번호 추첨하기</button>
   </div>
 
+  <!-- Speetto Info & Map -->
   <div class="container" id="map-container">
-    <h2>스피또 당첨 판매점</h2>
+    <h2>스피또 정보</h2>
+    
+    <div class="speetto-stats">
+      <div class="stat-item">
+        <span class="stat-label">스피또 2000 (66회)</span>
+        <div class="stat-bar"><div class="stat-fill" style="width: 74%;">74%</div></div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">스피또 1000 (104회)</span>
+        <div class="stat-bar"><div class="stat-fill" style="width: 95%;">95%</div></div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">스피또 500 (48회)</span>
+        <div class="stat-bar"><div class="stat-fill" style="width: 22%;">22%</div></div>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 2rem;">당첨 판매점 위치</h3>
     <div id="map-filters">
       <button class="filter-btn active" data-type="all">전체</button>
       <button class="filter-btn" data-type="500">500</button>
@@ -46,25 +71,6 @@
       <button class="filter-btn" data-type="2000">2000</button>
     </div>
     <div id="map"></div>
-  </div>
-
-  <div class="container affiliate-container">
-    <h2>제휴 문의</h2>
-    <form action="https://formspree.io/f/mjgplzoa" method="POST">
-      <div class="form-group">
-        <label for="name">성함</label>
-        <input type="text" id="name" name="name" required placeholder="성함을 입력해주세요">
-      </div>
-      <div class="form-group">
-        <label for="email">이메일</label>
-        <input type="email" id="email" name="_replyto" required placeholder="example@email.com">
-      </div>
-      <div class="form-group">
-        <label for="message">문의 내용</label>
-        <textarea id="message" name="message" required placeholder="문의하실 내용을 상세히 적어주세요"></textarea>
-      </div>
-      <button type="submit" id="submit-btn">문의하기</button>
-    </form>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>

@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const themeToggle = document.getElementById('theme-toggle');
   const setCountSelect = document.getElementById('set-count');
   const bonusCheckbox = document.getElementById('bonus-checkbox');
+  const fortuneBtn = document.getElementById('fortune-btn');
+  const fortuneDisplay = document.getElementById('fortune-display');
   const body = document.body;
 
   let map;
@@ -24,6 +26,28 @@ document.addEventListener('DOMContentLoaded', () => {
   themeToggle.addEventListener('click', () => {
     body.classList.toggle('dark-mode');
     updateThemeUI(body.classList.contains('dark-mode'));
+  });
+
+  // --- Today's Fortune Logic ---
+  const fortunes = [
+    "오늘 당신에게 예상치 못한 행운이 찾아옵니다! 🍀",
+    "작은 노력이 큰 결실을 맺는 하루입니다. 꾸준히 정진하세요.",
+    "주변 사람들과의 협력이 큰 힘이 될 것입니다. 포용력을 발휘하세요.",
+    "오늘은 새로운 시작을 하기에 아주 좋은 날입니다.",
+    "당신의 고집을 조금 내려놓으면 더 넓은 세상이 보입니다.",
+    "기회는 준비된 자에게 옵니다. 오늘이 바로 그날일 수도 있습니다.",
+    "밝은 미소가 당신의 운을 더욱 높여줍니다. 활기차게 웃어보세요!",
+    "어려운 일이 생겨도 침착함을 유지하면 슬기롭게 해결됩니다.",
+    "오늘은 재물운이 상승하는 날입니다. 소소한 기쁨을 누려보세요.",
+    "가까운 곳으로의 산책이 당신에게 새로운 영감을 줄 것입니다."
+  ];
+
+  fortuneBtn.addEventListener('click', () => {
+    const randomIndex = Math.floor(Math.random() * fortunes.length);
+    fortuneDisplay.textContent = fortunes[randomIndex];
+    fortuneDisplay.style.animation = 'none';
+    fortuneDisplay.offsetHeight; // trigger reflow
+    fortuneDisplay.style.animation = 'pop-in 0.5s ease-out';
   });
 
   // --- Latest Lotto Results Logic ---
@@ -120,18 +144,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Speetto Map Logic ---
   const winningStores = [
-    { name: "복권명당", type: "2000", lat: 37.5665, lng: 126.9780, addr: "서울시 중구" },
-    { name: "행운의집", type: "1000", lat: 35.1796, lng: 129.0756, addr: "부산시 연제구" },
-    { name: "대박상회", type: "500", lat: 35.8714, lng: 128.6014, addr: "대구시 중구" },
-    { name: "희망로또", type: "2000", lat: 37.4563, lng: 126.7052, addr: "인천시 남동구" },
-    { name: "금빛복권", type: "1000", lat: 35.1595, lng: 126.8526, addr: "광주시 서구" },
-    { name: "중앙복권", type: "2000", lat: 36.3504, lng: 127.3845, addr: "대전시 서구" },
-    { name: "울산행운", type: "500", lat: 35.5384, lng: 129.3114, addr: "울산시 남구" },
-    { name: "수원대박", type: "2000", lat: 37.2636, lng: 127.0286, addr: "경기도 수원시" }
+    { name: "복권명당", type: "2000", lat: 37.5665, lng: 126.9780, addr: "서울시 중구", round: "66회", date: "2024-03-20" },
+    { name: "행운의집", type: "1000", lat: 35.1796, lng: 129.0756, addr: "부산시 연제구", round: "104회", date: "2024-03-15" },
+    { name: "대박상회", type: "500", lat: 35.8714, lng: 128.6014, addr: "대구시 중구", round: "48회", date: "2024-03-10" },
+    { name: "희망로또", type: "2000", lat: 37.4563, lng: 126.7052, addr: "인천시 남동구", round: "66회", date: "2024-03-05" },
+    { name: "금빛복권", type: "1000", lat: 35.1595, lng: 126.8526, addr: "광주시 서구", round: "104회", date: "2024-02-28" },
+    { name: "중앙복권", type: "2000", lat: 36.3504, lng: 127.3845, addr: "대전시 서구", round: "66회", date: "2024-02-20" },
+    { name: "울산행운", type: "500", lat: 35.5384, lng: 129.3114, addr: "울산시 남구", round: "48회", date: "2024-02-15" },
+    { name: "수원대박", type: "2000", lat: 37.2636, lng: 127.0286, addr: "경기도 수원시", round: "66회", date: "2024-02-01" }
   ];
 
   function initMap() {
-    // Center of South Korea
     map = L.map('map').setView([36.2, 127.8], 7);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
     renderMarkers('all');
@@ -143,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     winningStores.forEach(store => {
       if (filterType === 'all' || store.type === filterType) {
         const marker = L.marker([store.lat, store.lng])
-          .bindPopup(`<b>${store.name}</b><br>스피또${store.type}<br>${store.addr}`);
+          .bindPopup(`<b>${store.name}</b><br>스피또${store.type} (${store.round})<br>당첨일: ${store.date}<br>${store.addr}`);
         marker.addTo(map);
         markers.push(marker);
       }
@@ -152,7 +175,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      if (e.target.id === 'fortune-btn') return;
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        if (b.id !== 'fortune-btn') b.classList.remove('active');
+      });
       e.target.classList.add('active');
       renderMarkers(e.target.dataset.type);
     });
