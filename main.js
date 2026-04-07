@@ -46,7 +46,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const randomIndex = Math.floor(Math.random() * fortunes.length);
     const fortune = fortunes[randomIndex];
     fortuneDisplay.textContent = fortune.text;
-    fortuneDisplay.style.color = fortune.type === 'lucky' ? 'var(--primary-color)' : 'var(--placeholder-color)';
+    
+    // Apply bright/dark color coding
+    fortuneDisplay.classList.remove('lucky', 'unlucky');
+    fortuneDisplay.classList.add(fortune.type);
+    
     fortuneDisplay.style.animation = 'none';
     fortuneDisplay.offsetHeight; 
     fortuneDisplay.style.animation = 'pop-in 0.5s ease-out';
@@ -56,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
   async function fetchLatestLotto() {
     const infoDisplay = document.getElementById('latest-draw-info');
     const container = document.getElementById('latest-ball-container');
+    const storesDisplay = document.getElementById('latest-stores-info');
     const startDate = new Date('2002-12-07');
     const now = new Date();
     const diffWeeks = Math.floor((now - startDate) / (7 * 24 * 60 * 60 * 1000)) + 1;
@@ -73,15 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (e) {
       infoDisplay.textContent = '당첨 정보를 불러올 수 없습니다.';
-      renderLatestResults({drwtNo1:1, drwtNo2:10, drwtNo3:20, drwtNo4:30, drwtNo5:40, drwtNo6:45, bnusNo:7, drwNoDate:'2026-04-04'}, 1218);
+      // Fallback to 1218th draw data
+      renderLatestResults({
+        drwtNo1: 3, drwtNo2: 28, drwtNo3: 31, drwtNo4: 32, drwtNo5: 42, drwtNo6: 45, bnusNo: 25, drwNoDate: '2026-04-04'
+      }, 1218);
     }
   }
 
   function renderLatestResults(data, drawNum) {
     const infoDisplay = document.getElementById('latest-draw-info');
     const container = document.getElementById('latest-ball-container');
+    const storesDisplay = document.getElementById('latest-stores-info');
+    
     container.innerHTML = '';
     infoDisplay.textContent = `${drawNum}회차 (${data.drwNoDate})`;
+    
     [data.drwtNo1, data.drwtNo2, data.drwtNo3, data.drwtNo4, data.drwtNo5, data.drwtNo6].forEach(num => {
       container.appendChild(createBallElement(num));
     });
@@ -90,6 +101,17 @@ document.addEventListener('DOMContentLoaded', () => {
     plus.textContent = '+';
     container.appendChild(plus);
     container.appendChild(createBallElement(data.bnusNo, true));
+
+    // Hardcoded winning stores for the latest draw (1218)
+    if (drawNum === 1218) {
+      storesDisplay.innerHTML = `
+        <strong>주요 당첨 판매점:</strong><br>
+        꿈이있는 로또점 (서울 은평구), 웨이스탑 (서울 동대문구),<br>
+        돈벼락맞는곳 (부산진구), 돈벼락복권방 (대구 북구), 복권맛집 (경기 포천시) 등
+      `;
+    } else {
+      storesDisplay.textContent = "상세 판매점 정보는 동행복권 홈페이지를 확인하세요.";
+    }
   }
 
   // --- Lotto Generator Logic ---

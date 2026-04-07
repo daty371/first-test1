@@ -8,12 +8,17 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
+  <div class="warning-banner">
+    ⚠️ 복권(로또, 스피또 등)은 가벼운 취미로만 즐겨주세요. 과도한 몰입은 금물입니다.
+  </div>
+
   <button id="theme-toggle">다크 모드</button>
 
   <div class="container latest-results">
     <h2>이번 주 당첨 번호</h2>
     <div id="latest-draw-info" class="draw-info">정보를 불러오는 중...</div>
     <div id="latest-ball-container" class="ball-row"></div>
+    <div id="latest-stores-info" class="stores-info"></div>
   </div>
 
   <!-- Today's Fortune -->
@@ -46,7 +51,10 @@
 
   <!-- Speetto Info & Map -->
   <div class="container" id="map-container">
-    <h2>스피또 잔여 수량 정보</h2>
+    <div class="speetto-header">
+      <h2>스피또 잔여 수량 정보</h2>
+      <span class="update-date">업로드 날짜: 2026-04-03</span>
+    </div>
     
     <div class="speetto-stats">
       <div class="stat-item">
