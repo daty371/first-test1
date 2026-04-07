@@ -12,6 +12,17 @@
     ⚠️ 복권(로또, 스피또 등)은 가벼운 취미로만 즐겨주세요. 과도한 몰입은 금물입니다.
   </div>
 
+  <div id="visitor-counter">
+    <div class="visitor-item">
+      <span class="visitor-label">오늘 방문자:</span>
+      <span id="today-visitors" class="visitor-count">0</span>
+    </div>
+    <div class="visitor-item">
+      <span class="visitor-label">누적 방문자:</span>
+      <span id="total-visitors" class="visitor-count">0</span>
+    </div>
+  </div>
+
   <button id="theme-toggle">다크 모드</button>
 
   <div class="container latest-results">
@@ -52,8 +63,8 @@
   <!-- Speetto Info & Map -->
   <div class="container" id="map-container">
     <div class="speetto-header">
-      <h2>스피또 잔여 수량 정보</h2>
-      <span class="update-date">업로드 날짜: 2026-04-03</span>
+      <h2>전국 당첨 판매점 & 정보</h2>
+      <span class="update-date">데이터 업데이트: 2026-04-03</span>
     </div>
     
     <div class="speetto-stats">
@@ -78,25 +89,15 @@
           <span>1등: 4장 / 2등: 12장 / 3등: 45,910장</span>
         </div>
       </div>
-
-      <div class="stat-item">
-        <div class="stat-header">
-          <span class="stat-label">스피또 500 (48회) - 출고율 22%</span>
-          <span class="stat-advice">판매 초기. 전국에 1등이 숨어있습니다!</span>
-        </div>
-        <div class="stat-bar"><div class="stat-fill" style="width: 22%;"></div></div>
-        <div class="stat-details">
-          <span>1등: 5장 / 2등: 100장 / 3등: 580,210장</span>
-        </div>
-      </div>
     </div>
 
-    <h3 style="margin-top: 2rem;">당첨 판매점 위치</h3>
+    <h3 style="margin-top: 2rem;">명당 위치 확인</h3>
     <div id="map-filters">
       <button class="filter-btn active" data-type="all">전체</button>
-      <button class="filter-btn" data-type="500">500</button>
-      <button class="filter-btn" data-type="1000">1000</button>
-      <button class="filter-btn" data-type="2000">2000</button>
+      <button class="filter-btn" data-type="6/45">로또 6/45</button>
+      <button class="filter-btn" data-type="2000">스피또 2000</button>
+      <button class="filter-btn" data-type="1000">스피또 1000</button>
+      <button class="filter-btn" data-type="500">스피또 500</button>
     </div>
     <div id="map"></div>
   </div>
